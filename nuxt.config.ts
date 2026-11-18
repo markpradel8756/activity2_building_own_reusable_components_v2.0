@@ -1,14 +1,14 @@
-// Nuxt configuration
+// Nuxt config
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
-  // Global CSS (loads Tailwind)
+  // Global styles
   css: ['~/assets/css/main.css'],
 
-  // Tailwind CSS v4 plugin for Vite
+  // Tailwind plugin
   vite: {
     plugins: [tailwindcss()]
   },

@@ -1,23 +1,17 @@
-<!--
-  AppHeader.vue
-  Reusable navigation header. Placed at the top of every page.
-  - Shows the site name
-  - Uses <NuxtLink> for client-side navigation
-  - Collapses into a menu button on small screens
--->
+<!-- Reusable site header. -->
 <script setup>
 import { ref, watch } from 'vue'
 
-// Navigation links are kept in one list so new pages are easy to add.
+// Navigation links
 const links = [
   { label: 'Home', to: '/' },
   { label: 'Students', to: '/students' }
 ]
 
-// Controls the mobile menu (open / closed)
+// Mobile menu state
 const isMenuOpen = ref(false)
 
-// Close the mobile menu automatically after navigating to another page
+// Close menu after navigation
 const route = useRoute()
 watch(() => route.path, () => {
   isMenuOpen.value = false
@@ -27,7 +21,7 @@ watch(() => route.path, () => {
 <template>
   <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-      <!-- Website name -->
+      <!-- Brand -->
       <NuxtLink to="/" class="flex items-center gap-2 text-lg font-bold text-slate-900">
         <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-sm font-extrabold text-white">
           SH
@@ -35,7 +29,7 @@ watch(() => route.path, () => {
         StudentHub
       </NuxtLink>
 
-      <!-- Desktop links -->
+      <!-- Desktop navigation -->
       <ul class="hidden items-center gap-1 sm:flex">
         <li v-for="link in links" :key="link.to">
           <NuxtLink
@@ -64,7 +58,7 @@ watch(() => route.path, () => {
       </button>
     </nav>
 
-    <!-- Mobile links -->
+    <!-- Mobile navigation -->
     <ul v-show="isMenuOpen" id="mobile-menu" class="space-y-1 border-t border-slate-200 px-4 py-3 sm:hidden">
       <li v-for="link in links" :key="link.to">
         <NuxtLink

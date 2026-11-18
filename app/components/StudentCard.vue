@@ -1,23 +1,9 @@
-<!--
-  StudentCard.vue
-  Displays ONE student. It has no student data of its own:
-  everything it shows comes from the parent page through props.
-  The same component is used for every student on every page.
-
-  Example:
-    <StudentCard
-      name="Andrea Villanueva"
-      student-id="2023-00142"
-      course="BS Information Technology"
-      :year-level="3"
-      avatar="/images/avatars/avatar-1.svg"
-    />
--->
+<!-- Reusable student card. -->
 <script setup>
 import { computed } from 'vue'
 
 const props = defineProps({
-  // Required information
+  // Required props
   name: {
     type: String,
     required: true
@@ -36,10 +22,10 @@ const props = defineProps({
     validator: (value) => value >= 1 && value <= 5
   },
 
-  // Optional information
+  // Optional props
   avatar: {
     type: String,
-    default: '' // when empty, the student's initials are shown instead
+    default: ''
   },
   email: {
     type: String,
@@ -51,13 +37,13 @@ const props = defineProps({
   }
 })
 
-// Turns 1 into "1st Year", 2 into "2nd Year", and so on
+// Format year level
 const yearLabel = computed(() => {
   const suffixes = { 1: 'st', 2: 'nd', 3: 'rd' }
   return `${props.yearLevel}${suffixes[props.yearLevel] || 'th'} Year`
 })
 
-// "Andrea Villanueva" -> "AV" (used when no avatar image is given)
+// Create initials
 const initials = computed(() =>
   props.name
     .split(' ')
@@ -67,7 +53,7 @@ const initials = computed(() =>
     .toUpperCase()
 )
 
-// Show the extra details section only if the parent passed any
+// Check optional details
 const hasDetails = computed(() => props.email || props.section)
 </script>
 
@@ -75,7 +61,7 @@ const hasDetails = computed(() => props.email || props.section)
   <article
     class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
   >
-    <!-- Avatar + name -->
+    <!-- Student avatar and name -->
     <div class="flex items-center gap-4">
       <img
         v-if="avatar"
@@ -99,7 +85,7 @@ const hasDetails = computed(() => props.email || props.section)
       </div>
     </div>
 
-    <!-- Course and year level -->
+    <!-- Course and year -->
     <dl class="mt-5 space-y-2 text-sm">
       <div class="flex justify-between gap-4">
         <dt class="text-slate-500">Course</dt>
@@ -114,7 +100,7 @@ const hasDetails = computed(() => props.email || props.section)
         </dd>
       </div>
 
-      <!-- Optional details (only shown when the parent passes them) -->
+      <!-- Optional details -->
       <template v-if="hasDetails">
         <div v-if="section" class="flex justify-between gap-4 border-t border-slate-100 pt-2">
           <dt class="text-slate-500">Section</dt>

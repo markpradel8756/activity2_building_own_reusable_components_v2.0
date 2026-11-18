@@ -1,12 +1,4 @@
-<!--
-  InfoCard.vue
-  A simple card for informational content.
-  The title and description come from props, so the same card
-  can show any content without editing this file.
-
-  Example:
-    <InfoCard title="Our Mission" description="..." accent="emerald" />
--->
+<!-- Reusable information card. -->
 <script setup>
 import { computed } from 'vue'
 
@@ -19,7 +11,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  // Optional colour of the top accent bar
+  // Accent colour
   accent: {
     type: String,
     default: 'indigo',
@@ -27,7 +19,7 @@ const props = defineProps({
   }
 })
 
-// Full class names are written out so Tailwind can find them when building the CSS
+// Tailwind accent classes
 const accentClasses = {
   indigo: 'bg-indigo-500',
   sky: 'bg-sky-500',

@@ -1,9 +1,6 @@
-<!--
-  AppFooter.vue
-  Reusable footer shown at the bottom of every page.
--->
+<!-- Reusable site footer. -->
 <script setup>
-// The year updates automatically, so the footer never needs editing.
+// Current year
 const currentYear = new Date().getFullYear()
 </script>
 

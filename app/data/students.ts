@@ -1,6 +1,4 @@
-// Sample student records used across the website.
-// NOTE: All names, IDs, and emails below are FICTIONAL and for demonstration only.
-// The pages read from this single list and pass each record to <StudentCard> through props.
+// Fictional student data
 
 export interface Student {
   id: number

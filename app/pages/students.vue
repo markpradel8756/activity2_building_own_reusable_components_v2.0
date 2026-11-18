@@ -1,16 +1,11 @@
-<!--
-  Students page (/students)
-  Reuses the SAME components as the homepage:
-  AppHeader, StudentCard, InfoCard, AppButton and AppFooter.
-  Here StudentCard also receives the optional `section` and `email` props.
--->
+<!-- Students page. -->
 <script setup>
 import { ref, computed } from 'vue'
 import { students } from '~/data/students'
 
 useHead({ title: 'Students | StudentHub' })
 
-// Summary numbers, shown with <InfoCard>
+// Summary cards
 const courseCount = new Set(students.map((student) => student.course)).size
 const summaryItems = [
   {
@@ -30,7 +25,7 @@ const summaryItems = [
   }
 ]
 
-// Year level filter (uses AppButton click events)
+// Year filters
 const filters = [
   { label: 'All', value: 0 },
   { label: '1st Year', value: 1 },
@@ -51,7 +46,7 @@ const filteredStudents = computed(() => {
     <AppHeader />
 
     <main class="flex-1">
-      <!-- Page title and introduction -->
+      <!-- Page title -->
       <section class="bg-gradient-to-b from-indigo-50 to-slate-50">
         <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Student Directory</h1>
@@ -76,12 +71,12 @@ const filteredStudents = computed(() => {
         </div>
       </section>
 
-      <!-- Filter + student list -->
+      <!-- Student list -->
       <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 class="text-2xl font-bold text-slate-900">All Students</h2>
 
-          <!-- The active filter uses color="primary", the others use color="secondary" -->
+          <!-- Filter buttons -->
           <div class="flex flex-wrap gap-2" role="group" aria-label="Filter students by year level">
             <AppButton
               v-for="filter in filters"

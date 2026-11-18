@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Design tokens: change these to re-theme the whole site */
+/* Site theme */
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }

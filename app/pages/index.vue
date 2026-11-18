@@ -1,19 +1,14 @@
-<!--
-  Homepage (/)
-  Built entirely from reusable components:
-  AppHeader, AppButton, StudentCard, InfoCard and AppFooter.
--->
+<!-- Home page. -->
 <script setup>
 import { ref, computed } from 'vue'
 import { students } from '~/data/students'
 
 useHead({ title: 'Home | StudentHub' })
 
-// Show only the first three students as "featured" on the homepage
+// Featured students
 const featuredStudents = computed(() => students.slice(0, 3))
 
-// Information shown with <InfoCard>. Changing this list changes the cards,
-// without touching InfoCard.vue itself.
+// Information cards
 const infoItems = [
   {
     title: 'Student Directory',
@@ -32,7 +27,7 @@ const infoItems = [
   }
 ]
 
-// Small demo of AppButton click events
+// Button demo
 const greetCount = ref(0)
 function sayHello() {
   greetCount.value++
@@ -47,7 +42,7 @@ function resetGreeting() {
     <AppHeader />
 
     <main class="flex-1">
-      <!-- Welcome section -->
+      <!-- Welcome -->
       <section class="bg-gradient-to-b from-indigo-50 to-slate-50">
         <div class="mx-auto max-w-6xl px-4 py-16 text-center sm:px-6 sm:py-24">
           <p class="text-sm font-semibold uppercase tracking-wider text-indigo-600">Welcome to StudentHub</p>
@@ -89,7 +84,7 @@ function resetGreeting() {
         </div>
       </section>
 
-      <!-- About / information section -->
+      <!-- About -->
       <section id="about" class="scroll-mt-20 border-y border-slate-200 bg-white">
         <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">About This Website</h2>
@@ -107,7 +102,7 @@ function resetGreeting() {
         </div>
       </section>
 
-      <!-- Button demo: same AppButton, different labels, colours and click handlers -->
+      <!-- Button demo -->
       <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div class="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm sm:p-10">
           <h2 class="text-2xl font-bold text-slate-900">Try the Reusable Button</h2>
