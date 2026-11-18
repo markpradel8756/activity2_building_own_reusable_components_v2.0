@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Design tokens: change these to re-theme the whole site */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 font-sans text-slate-700 antialiased;
+}
