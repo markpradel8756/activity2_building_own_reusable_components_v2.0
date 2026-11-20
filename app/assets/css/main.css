@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
-/* Site theme */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
+  --color-sage-50: #f1f7f1;
+  --color-sage-100: #e6f0e6;
+  --color-sage-200: #d5e5d7;
+  --color-sage-700: #2d694b;
+  --color-sage-800: #24543c;
+  --color-sage-950: #19362a;
 }
 
 body {
-  @apply bg-slate-50 font-sans text-slate-700 antialiased;
+  @apply bg-white font-sans text-slate-700 antialiased;
 }

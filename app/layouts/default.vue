@@ -1,6 +1,10 @@
 <!-- Default page layout. -->
 <template>
   <div class="flex min-h-screen flex-col">
-    <slot />
+    <AppHeader />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <AppFooter />
   </div>
 </template>

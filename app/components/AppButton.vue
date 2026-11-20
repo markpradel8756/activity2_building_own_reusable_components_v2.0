@@ -1,4 +1,3 @@
-<!-- Reusable button component. -->
 <script setup>
 import { computed } from 'vue'
 
@@ -25,29 +24,25 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
-// Button colours
+// Keep the full Tailwind class names so Tailwind can find them.
 const colorClasses = {
-  primary: 'bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:outline-indigo-600',
-  secondary: 'bg-white text-slate-700 ring-1 ring-inset ring-slate-300 hover:bg-slate-100 focus-visible:outline-slate-500',
-  success: 'bg-emerald-600 text-white hover:bg-emerald-700 focus-visible:outline-emerald-600',
-  danger: 'bg-rose-600 text-white hover:bg-rose-700 focus-visible:outline-rose-600'
+  primary: 'border-sage-700 bg-sage-700 text-white hover:border-sage-800 hover:bg-sage-800',
+  secondary: 'border-sage-200 bg-white text-sage-800 hover:bg-sage-50',
+  success: 'border-emerald-700 bg-emerald-700 text-white hover:bg-emerald-800',
+  danger: 'border-rose-700 bg-rose-700 text-white hover:bg-rose-800'
 }
 
-// Shared button styles
 const buttonClass = computed(() => [
-  'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold shadow-sm',
-  'transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 cursor-pointer',
-  colorClasses[props.color]
+  'inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border px-4 py-2.5 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-700',
+  colorClasses[props.color] || colorClasses.primary
 ])
 </script>
 
 <template>
-  <!-- Link button -->
   <NuxtLink v-if="to" :to="to" :class="buttonClass" @click="emit('click', $event)">
     {{ label }}
   </NuxtLink>
 
-  <!-- Regular button -->
   <button v-else :type="type" :class="buttonClass" @click="emit('click', $event)">
     {{ label }}
   </button>

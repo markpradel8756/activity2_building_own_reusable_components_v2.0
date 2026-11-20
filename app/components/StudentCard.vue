@@ -1,4 +1,3 @@
-<!-- Reusable student card. -->
 <script setup>
 import { computed } from 'vue'
 
@@ -37,80 +36,69 @@ const props = defineProps({
   }
 })
 
-// Format year level
 const yearLabel = computed(() => {
   const suffixes = { 1: 'st', 2: 'nd', 3: 'rd' }
   return `${props.yearLevel}${suffixes[props.yearLevel] || 'th'} Year`
 })
 
-// Create initials
 const initials = computed(() =>
   props.name
-    .split(' ')
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
     .map((word) => word[0])
     .join('')
-    .slice(0, 2)
     .toUpperCase()
 )
-
-// Check optional details
-const hasDetails = computed(() => props.email || props.section)
 </script>
 
 <template>
-  <article
-    class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
-  >
-    <!-- Student avatar and name -->
-    <div class="flex items-center gap-4">
+  <article class="h-full rounded-xl border border-sage-200 bg-white p-5 shadow-sm">
+    <div class="flex items-center gap-3">
       <img
         v-if="avatar"
         :src="avatar"
-        :alt="`Avatar of ${name}`"
-        class="h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-slate-100"
-        width="64"
-        height="64"
+        alt=""
+        class="size-12 shrink-0 rounded-full object-cover"
+        width="48"
+        height="48"
       >
       <div
         v-else
-        class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-lg font-bold text-indigo-700 ring-4 ring-slate-100"
+        class="grid size-12 shrink-0 place-items-center rounded-full bg-sage-100 font-bold text-sage-800"
         aria-hidden="true"
       >
         {{ initials }}
       </div>
 
       <div class="min-w-0">
-        <h3 class="truncate text-lg font-semibold text-slate-900">{{ name }}</h3>
-        <p class="text-sm text-slate-500">ID: {{ studentId }}</p>
+        <h3 class="wrap-break-word text-lg font-semibold leading-snug text-sage-950">{{ name }}</h3>
+        <p class="mt-0.5 text-sm text-slate-600">ID {{ studentId }}</p>
       </div>
     </div>
 
-    <!-- Course and year -->
-    <dl class="mt-5 space-y-2 text-sm">
+    <dl class="mt-4 space-y-2.5 border-t border-sage-200 pt-4 text-sm">
       <div class="flex justify-between gap-4">
-        <dt class="text-slate-500">Course</dt>
-        <dd class="text-right font-medium text-slate-800">{{ course }}</dd>
+        <dt class="text-slate-600">Course</dt>
+        <dd class="min-w-0 wrap-break-word text-right font-medium text-slate-800">{{ course }}</dd>
       </div>
       <div class="flex items-center justify-between gap-4">
-        <dt class="text-slate-500">Year Level</dt>
+        <dt class="text-slate-600">Year level</dt>
         <dd>
-          <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+          <span class="inline-block rounded-full bg-sage-100 px-2.5 py-0.5 font-medium whitespace-nowrap text-sage-800">
             {{ yearLabel }}
           </span>
         </dd>
       </div>
 
-      <!-- Optional details -->
-      <template v-if="hasDetails">
-        <div v-if="section" class="flex justify-between gap-4 border-t border-slate-100 pt-2">
-          <dt class="text-slate-500">Section</dt>
-          <dd class="font-medium text-slate-800">{{ section }}</dd>
-        </div>
-        <div v-if="email" class="flex justify-between gap-4">
-          <dt class="text-slate-500">Email</dt>
-          <dd class="truncate font-medium text-slate-800">{{ email }}</dd>
-        </div>
-      </template>
+      <div v-if="section" class="flex justify-between gap-4">
+        <dt class="text-slate-600">Section</dt>
+        <dd class="text-right font-medium text-slate-800">{{ section }}</dd>
+      </div>
+      <div v-if="email" class="flex justify-between gap-4">
+        <dt class="text-slate-600">Email</dt>
+        <dd class="min-w-0 [overflow-wrap:anywhere] text-right font-medium text-slate-800">{{ email }}</dd>
+      </div>
     </dl>
   </article>
 </template>
