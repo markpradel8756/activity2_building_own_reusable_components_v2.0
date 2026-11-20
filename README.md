@@ -52,6 +52,5 @@ app/
     └── students.vue
 public/
 └── images/avatars/          # Placeholder avatar images
-screenshots/                 # Submission screenshots
 ```
 #
